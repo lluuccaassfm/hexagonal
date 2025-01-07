@@ -3,12 +3,12 @@ package com.lucas.hexagonal.adapters.out;
 import com.lucas.hexagonal.adapters.out.client.FindAddressByZipCodeClient;
 import com.lucas.hexagonal.adapters.out.client.mapper.AddressResponseMapper;
 import com.lucas.hexagonal.application.core.domain.Address;
-import com.lucas.hexagonal.application.ports.out.FindAddressByZipCodeOutpuPort;
+import com.lucas.hexagonal.application.ports.out.FindAddressByZipCodeOutputPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FindAddressByZipCodeAdapter implements FindAddressByZipCodeOutpuPort {
+public class FindAddressByZipCodeAdapter implements FindAddressByZipCodeOutputPort {
 
     @Autowired
     private FindAddressByZipCodeClient findAddressByZipCodeClient;
