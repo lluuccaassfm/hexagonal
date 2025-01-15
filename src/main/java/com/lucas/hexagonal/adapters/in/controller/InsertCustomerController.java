@@ -3,7 +3,7 @@ package com.lucas.hexagonal.adapters.in.controller;
 import com.lucas.hexagonal.adapters.in.controller.mapper.CustomerMapper;
 import com.lucas.hexagonal.adapters.in.controller.request.CustomerRequest;
 import com.lucas.hexagonal.adapters.in.controller.response.CustomerResponse;
-import com.lucas.hexagonal.application.core.domain.Customer;
+import com.lucas.hexagonal.application.ports.in.DeleteCustomerByIdInputPort;
 import com.lucas.hexagonal.application.ports.in.FindCustomerByIdInputPort;
 import com.lucas.hexagonal.application.ports.in.InsertCustomerInputPort;
 import com.lucas.hexagonal.application.ports.in.UpdateCustomerInputPort;
@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,9 @@ public class InsertCustomerController {
 
     @Autowired
     private UpdateCustomerInputPort updateCustomerInputPort;
+
+    @Autowired
+    private DeleteCustomerByIdInputPort deleteCustomerByIdInputPort;
 
     @Autowired
     private CustomerMapper customerMapper;
@@ -56,4 +60,9 @@ public class InsertCustomerController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public  ResponseEntity<Void> delete(@PathVariable final String id) {
+        deleteCustomerByIdInputPort.deletCustomerById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
