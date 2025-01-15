@@ -1,9 +1,10 @@
 package com.lucas.hexagonal.application.core.usecase;
 
+import com.lucas.hexagonal.application.ports.in.DeleteCustomerByIdInputPort;
 import com.lucas.hexagonal.application.ports.in.FindCustomerByIdInputPort;
 import com.lucas.hexagonal.application.ports.out.DeleteCustomerByIdOutputPort;
 
-public class DeleteCustomerByIdUseCase implements DeleteCustomerByIdOutputPort{
+public class DeleteCustomerByIdUseCase implements DeleteCustomerByIdInputPort {
 
     private final FindCustomerByIdInputPort findCustomerByIdInputPort;
 
@@ -16,7 +17,7 @@ public class DeleteCustomerByIdUseCase implements DeleteCustomerByIdOutputPort{
     }
 
     @Override
-    public void delete(String id) {
+    public void deletCustomerById(String id) {
         findCustomerByIdInputPort.find(id);
         deleteCustomerByIdOutputPort.delete(id);
     }
